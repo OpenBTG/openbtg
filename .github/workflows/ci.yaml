@@ -54,7 +54,7 @@ jobs:
       - name: before_install
         run: |
          sudo apt update
-         sudo apt install -y xorg-dev libglu1-mesa-dev x11proto-xf86vidmode-dev mingw-w64 mingw-w64-common mingw-w64-i686-dev mingw-w64-tools mingw-w64-tools-dbgsym mingw-w64-x86-64-dev 
+         sudo apt install -y xorg-dev libglu1-mesa-dev x11proto-xf86vidmode-dev mingw-w64 mingw-w64-common mingw-w64-i686-dev mingw-w64-tools mingw-w64-x86-64-dev 
       - name: install
         run: |
          wget https://github.com/glfw/glfw/archive/3.3.7.tar.gz
