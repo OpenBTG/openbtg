@@ -27,7 +27,7 @@ jobs:
         run: make install
         run: popd
         run: apt install -y libglm-dev
-      - name: before_script:
+      - name: before_script
         run: pushd build/
       - name: script
         run: cmake ..
