@@ -33,7 +33,7 @@ jobs:
         run: pushd build/
       - name: script
         run: |
-         cmake .
+         cmake -S . -B /tmp/openbtg
          make
       - name: print_result
         run: |
@@ -42,4 +42,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: openbtg_build_artifacts
-          path: ./build
+          path: /tmp/openbtg
