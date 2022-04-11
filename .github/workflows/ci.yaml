@@ -7,8 +7,8 @@ on:
   pull_request:
 
 jobs:
-  build_test:
-    name: build_test
+  build_test_linux:
+    name: build_test_linux
     runs-on: ubuntu-20.04
     steps:
       - name: checkout
@@ -38,8 +38,44 @@ jobs:
       - name: print_result
         run: |
          ls -lah ./build
-      - name: upload artifacts
+      - name: upload linux artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: openbtg_build_artifacts
+          name: openbtg_linux
+          path: ./mortar
+  build_test_win:
+    name: build_test_win
+    runs-on: ubuntu-20.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: before_install
+        run: |
+         sudo apt update
+         sudo apt install -y xorg-dev libglu1-mesa-dev x11proto-xf86vidmode-dev mingw-w64
+      - name: install
+        run: |
+         wget https://github.com/glfw/glfw/archive/3.3.7.tar.gz
+         tar -xzvf 3.3.7.tar.gz
+         pushd glfw-3.3.7/
+         cmake .
+         make
+         sudo make install
+         popd
+         sudo apt install -y libglm-dev
+      - name: before_script
+        run: pushd build/
+      - name: script
+        run: |
+         x86_64-w64-mingw32-cmake .
+         make
+      - name: print_result
+        run: |
+         ls -lah ./build
+      - name: upload windows artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: openbtg_win
           path: ./mortar
