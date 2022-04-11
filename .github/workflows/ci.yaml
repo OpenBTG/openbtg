@@ -54,7 +54,7 @@ jobs:
       - name: before_install
         run: |
          sudo apt update
-         sudo apt install -y xorg-dev libglu1-mesa-dev x11proto-xf86vidmode-dev mingw-w64 mingw-w64-common mingw-w64-i686-dev mingw-w64-tools mingw-w64-x86-64-dev cmake build-essential libssl-dev
+         sudo apt install -y xorg-dev libglu1-mesa-dev x11proto-xf86vidmode-dev mingw-w64 mingw-w64-common mingw-w64-i686-dev mingw-w64-tools mingw-w64-x86-64-dev cmake build-essential libssl-dev libglm-dev
       - name: install
         run: |
          wget https://github.com/glfw/glfw/archive/3.3.7.tar.gz
@@ -64,7 +64,6 @@ jobs:
          make
          sudo make install
          popd
-         sudo apt install -y libglm-dev
       - name: before_script
         run: pushd build/
       - name: script
