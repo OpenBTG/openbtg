@@ -60,11 +60,9 @@ jobs:
          wget https://github.com/glfw/glfw/archive/3.3.7.tar.gz
          tar -xzvf 3.3.7.tar.gz
          pushd glfw-3.3.7/
-         cmake .
-         make
-         sudo make install
          cmake -DCMAKE_TOOLCHAIN_FILE=/home/runner/work/openbtg/openbtg/mingw-w64-x86_64.cmake .
          make
+         sudo make install
          popd
          sudo apt install -y libglm-dev
       - name: before_script
