@@ -63,7 +63,7 @@ jobs:
          cmake .
          make
          sudo make install
-         cmake -DCMAKE_TOOLCHAIN_FILE=mingw-w64-x86_64.cmake .
+         cmake -DCMAKE_TOOLCHAIN_FILE=/home/runner/work/openbtg/openbtg/mingw-w64-x86_64.cmake .
          make
          popd
          sudo apt install -y libglm-dev
@@ -71,7 +71,7 @@ jobs:
         run: pushd build/
       - name: script
         run: |
-         cmake -DCMAKE_TOOLCHAIN_FILE=CMake/x86_64-w64-mingw32.cmake .
+         cmake -DCMAKE_TOOLCHAIN_FILE=/home/runner/work/openbtg/openbtg/mingw-w64-x86_64.cmake .
          make
       - name: print_result
         run: |
