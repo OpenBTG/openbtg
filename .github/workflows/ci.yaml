@@ -21,9 +21,9 @@ jobs:
          sudo apt install -y xorg-dev libglu1-mesa-dev x11proto-xf86vidmode-dev
       - name: install
         run: |
-         wget https://github.com/glfw/glfw/archive/3.0.4.tar.gz
-         tar -xzvf 3.0.4.tar.gz
-         pushd glfw-3.0.4/
+         wget https://github.com/glfw/glfw/archive/3.3.7.tar.gz
+         tar -xzvf 3.3.7.tar.gz
+         pushd glfw-3.3.7/
          cmake .
          make
          sudo make install
