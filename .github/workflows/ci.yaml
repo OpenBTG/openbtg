@@ -2,7 +2,7 @@ name: ci
 
 on:
   push:
-    branch:
+    branches:
       - master
   pull_request:
 
@@ -16,22 +16,25 @@ jobs:
         with:
           fetch-depth: 0
       - name: before_install
-        run: apt update
-        run: apt install -y xorg-dev libglu1-mesa-dev x11proto-xf86vidmode-dev
+        run: |
+         apt update
+         apt install -y xorg-dev libglu1-mesa-dev x11proto-xf86vidmode-dev
       - name: install
-        run: wget https://github.com/glfw/glfw/archive/3.0.4.tar.gz
-        run: tar -xzvf 3.0.4.tar.gz
-        run: pushd glfw-3.0.4/
-        run: cmake .
-        run: make
-        run: make install
-        run: popd
-        run: apt install -y libglm-dev
+        run: |
+         wget https://github.com/glfw/glfw/archive/3.0.4.tar.gz
+         tar -xzvf 3.0.4.tar.gz
+         pushd glfw-3.0.4/
+         cmake .
+         make
+         make install
+         popd
+         apt install -y libglm-dev
       - name: before_script
         run: pushd build/
       - name: script
-        run: cmake ..
-        run: make
+        run: |
+         cmake ..
+         make
       - name: after_script
         run: popd
       - name: print_result
