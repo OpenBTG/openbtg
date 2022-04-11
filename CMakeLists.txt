@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.13)
 project(mortar)
 
 find_package(OpenGL)
@@ -20,7 +20,6 @@ set(SRCS
 	stream.cpp
 	texture.cpp
 	)
-
 
 # STATIC stuff (Windows) https://stackoverflow.com/questions/63178407/cmake-compile-in-linux-execute-in-windows
 if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
