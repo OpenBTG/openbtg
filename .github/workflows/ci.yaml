@@ -1,0 +1,38 @@
+name: ci
+
+on:
+  push:
+    branch:
+      - master
+  pull_request:
+
+jobs:
+  build_test:
+    name: build_test
+    runs-on: ubuntu-20.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: before_install
+        run: apt update
+        run: apt install -y xorg-dev libglu1-mesa-dev x11proto-xf86vidmode-dev
+      - name: install
+        run: wget https://github.com/glfw/glfw/archive/3.0.4.tar.gz
+        run: tar -xzvf 3.0.4.tar.gz
+        run: pushd glfw-3.0.4/
+        run: cmake .
+        run: make
+        run: make install
+        run: popd
+        run: apt install -y libglm-dev
+      - name: before_script:
+        run: pushd build/
+      - name: script
+        run: cmake ..
+        run: make
+      - name: after_script
+        run: popd
+      - name: print_result
+        run: ls -lah
