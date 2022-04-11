@@ -33,15 +33,7 @@ jobs:
         run: pushd build/
       - name: script
         run: |
-         sudo ls -lah /
-         sudo ls -lah /home/
-         sudo ls -lah /home/runner/
-         sudo ls -lah /home/runner/work
-         sudo ls -lah /home/runner/work/openbtg
-         sudo ls -lah /home/runner/work/openbtg/openbtg
-         sudo ls -lah
-         sudo ls -lah ..
-         cmake ..
+         cmake
          make
       - name: after_script
         run: popd
