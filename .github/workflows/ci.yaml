@@ -21,47 +21,25 @@ jobs:
           sudo apt install -y xorg-dev libglu1-mesa-dev x11proto-xf86vidmode-dev libglm-dev
       - name: install_glfw
         run: |
-          pwd
-          ls -lah
           wget https://github.com/glfw/glfw/archive/3.3.7.tar.gz
-          pwd
-          ls -lah
           tar -xzvf 3.3.7.tar.gz
-          pwd
-          ls -lah
-          pushd glfw-3.3.7/
-          pwd
-          ls -lah
+          rm 3.3.7.tar.gz
+          cd glfw-3.3.7
           cmake .
-          pwd
-          ls -lah
           make
-          pwd
-          ls -lah
           sudo make install
-          pwd
-          ls -lah
-          popd
-          pwd
-          ls -lah
-      - name: before_script
-        run: |
-          pushd build/
-          pwd
-          ls -lah
+          cd ..
       - name: script
         run: |
+          cd build
           cmake .
-          pwd
-          ls -lah
           make
-          pwd
-          ls -lah
+          cd ..
       - name: upload linux artifacts
         uses: actions/upload-artifact@v3
         with:
           name: openbtg_linux
-          path: ./mortar
+          path: ./build/mortar
 #  build_test_win:
 #    name: build_test_win
 #    runs-on: ubuntu-20.04
