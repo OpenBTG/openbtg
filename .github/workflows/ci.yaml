@@ -15,66 +15,85 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: before_install
+      - name: install_apt_packages
         run: |
-         sudo apt update
-         sudo apt install -y xorg-dev libglu1-mesa-dev x11proto-xf86vidmode-dev
-      - name: install
+          sudo apt update
+          sudo apt install -y xorg-dev libglu1-mesa-dev x11proto-xf86vidmode-dev libglm-dev
+      - name: install_glfw
         run: |
-         wget https://github.com/glfw/glfw/archive/3.3.7.tar.gz
-         tar -xzvf 3.3.7.tar.gz
-         pushd glfw-3.3.7/
-         cmake .
-         make
-         sudo make install
-         popd
-         sudo apt install -y libglm-dev
+          pwd
+          ls -lah
+          wget https://github.com/glfw/glfw/archive/3.3.7.tar.gz
+          pwd
+          ls -lah
+          tar -xzvf 3.3.7.tar.gz
+          pwd
+          ls -lah
+          pushd glfw-3.3.7/
+          pwd
+          ls -lah
+          cmake .
+          pwd
+          ls -lah
+          make
+          pwd
+          ls -lah
+          sudo make install
+          pwd
+          ls -lah
+          popd
+          pwd
+          ls -lah
       - name: before_script
-        run: pushd build/
+        run: |
+          pushd build/
+          pwd
+          ls -lah
       - name: script
         run: |
-         cmake .
-         make
-      - name: print_result
-        run: |
-         ls -lah ./build
+          cmake .
+          pwd
+          ls -lah
+          make
+          pwd
+          ls -lah
       - name: upload linux artifacts
         uses: actions/upload-artifact@v3
         with:
           name: openbtg_linux
           path: ./mortar
-  build_test_win:
-    name: build_test_win
-    runs-on: ubuntu-20.04
-    steps:
-      - name: checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: before_install
-        run: |
-         sudo apt update
-         sudo apt install -y xorg-dev libglu1-mesa-dev x11proto-xf86vidmode-dev mingw-w64 mingw-w64-common mingw-w64-i686-dev mingw-w64-tools mingw-w64-x86-64-dev cmake build-essential libssl-dev libglm-dev
-      - name: install
-        run: |
-         wget https://github.com/glfw/glfw/archive/3.3.7.tar.gz
-         tar -xzvf 3.3.7.tar.gz
-         pushd glfw-3.3.7/
-         cmake -DCMAKE_TOOLCHAIN_FILE=/home/runner/work/openbtg/openbtg/mingw-w64-x86_64.cmake .
-         make
-         sudo make install
-         popd
-      - name: before_script
-        run: pushd build/
-      - name: script
-        run: |
-         cmake -DCMAKE_TOOLCHAIN_FILE=/home/runner/work/openbtg/openbtg/mingw-w64-x86_64.cmake .
-         make
-      - name: print_result
-        run: |
-         ls -lah ./build
-      - name: upload windows artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: openbtg_win
-          path: ./mortar
+#  build_test_win:
+#    name: build_test_win
+#    runs-on: ubuntu-20.04
+#    steps:
+#      - name: checkout
+#        uses: actions/checkout@v2
+#        with:
+#          fetch-depth: 0
+#      - name: before_install
+#        run: |
+#         sudo apt update
+#         sudo apt install -y xorg-dev libglu1-mesa-dev x11proto-xf86vidmode-dev mingw-w64 mingw-w64-common mingw-w64-i686-dev mingw-w64-tools mingw-w64-x86-64-dev cmake build-essential libssl-dev libglm-dev
+#      - name: install
+#        run: |
+#         wget https://github.com/glfw/glfw/archive/3.3.7.tar.gz
+#         tar -xzvf 3.3.7.tar.gz
+#         pushd glfw-3.3.7/
+#         cmake -DCMAKE_TOOLCHAIN_FILE=/home/runner/work/openbtg/openbtg/mingw-w64-x86_64.cmake .
+#         make
+#         sudo make install
+#         popd
+#      - name: before_script
+#        run: pushd build/
+#      - name: script
+#        run: |
+#         cmake -DCMAKE_TOOLCHAIN_FILE=/home/runner/work/openbtg/openbtg/mingw-w64-x86_64.cmake .
+#         make
+#      - name: print_result
+#        run: |
+#         ls -lah ./build
+#      - name: upload windows artifacts
+#        uses: actions/upload-artifact@v3
+#         with:
+#           name: openbtg_win
+#           path: ./mortar
