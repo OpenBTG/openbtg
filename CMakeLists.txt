@@ -24,7 +24,6 @@ if (STATIC_BUILD)
                 LINK_SEARCH_START_STATIC ON
                 LINK_SEARCH_END_STATIC ON
         )
-)
 endif()
 
 set(SRCS
