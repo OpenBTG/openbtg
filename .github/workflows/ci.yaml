@@ -31,10 +31,8 @@ jobs:
           cd ..
       - name: script
         run: |
-          cd build
           cmake .
           make
-          cd ..
       - name: upload linux artifacts
         uses: actions/upload-artifact@v3
         with:
